@@ -16,7 +16,7 @@ public class JSON_ARRAY {
 		
 		JSONParser parser = new JSONParser();
 		
-			 Object b = parser.parse(new FileReader("album.json"));
+			 Object b = parser.parse(new FileReader("prueba4.json"));
 			 JSONObject c = (JSONObject) b;
 			 @SuppressWarnings("unchecked")
 			ArrayList<String> a= (ArrayList<String>) c.get("photos");
