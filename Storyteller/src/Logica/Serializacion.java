@@ -7,8 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Serializacion<T> {
-	
-	
 	public byte[] serializar(T objeto){
 		ByteArrayOutputStream bs= new ByteArrayOutputStream();
 		ObjectOutputStream os;

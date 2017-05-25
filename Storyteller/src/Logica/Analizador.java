@@ -21,9 +21,9 @@ public class Analizador {
 	private HttpClient httpclient;
 	private JSONObject Obj;
 
-	public Analizador()
-	{
+	public Analizador(){
 		httpclient = new DefaultHttpClient();
+		
 	    try
 	    {
 	        URIBuilder builder = new URIBuilder("https://westus.api.cognitive.microsoft.com/vision/v1.0/analyze");
@@ -32,6 +32,7 @@ public class Analizador {
 	        URI uri = builder.build();
 	        request = new HttpPost(uri);
 	
+	        // Request headers - replace this example key with your valid subscription key.
 	        request.setHeader("Content-Type", "application/json");
 	        request.setHeader("Ocp-Apim-Subscription-Key", "8aeae71ad6e6445c8e66cc69c280b126");
 	    }
@@ -42,10 +43,10 @@ public class Analizador {
 	}
 	
 	
-	public void Analizar(String Url)
-	{
+	public void Analizar(String Url){
 	    try
 	    {
+	        // Request body. Replace the example URL with the URL for the JPEG image of a celebrity.
 	        StringEntity reqEntity = new StringEntity("{\"url\":\""+Url+"\"}");
 	        request.setEntity(reqEntity);
 	        HttpResponse response = httpclient.execute(request);
@@ -62,8 +63,7 @@ public class Analizador {
 	}
 	
 	
-	public String Descripcion() throws JSONException
-	{
+	public String Descripcion() throws JSONException{
 		JSONObject Description = Obj.getJSONObject("description");
     	JSONArray Array = Description.getJSONArray("captions");
     	String Text = Array.getJSONObject(0).getString("text");
@@ -71,8 +71,7 @@ public class Analizador {
 	}
 	
 	
-	public ArrayList<String> Tags() throws JSONException
-	{
+	public ArrayList<String> Tags() throws JSONException{
 		ArrayList<String> Tags = new ArrayList<String>();
 		JSONArray Arr = Obj.getJSONArray("tags");
     	for (int i = 0; i < 3; i++)

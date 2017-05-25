@@ -1,7 +1,7 @@
 package Arboles;
 
 public class Arbol<T> {
-	private Nodo<String> Raiz;
+	private Nodo Raiz;
 	
 	public Arbol()
 	{
@@ -99,7 +99,8 @@ public class Arbol<T> {
 	}
 	
 	
-	public Nodo<String> RotarHijoDer(Nodo<String> Nodo){
+	public Nodo<String> RotarHijoDer(Nodo<String> Nodo)
+	{
 		Nodo<String> Auxiliar = Nodo.getNodeDer();
 		Nodo.addChildDer(Auxiliar.getNodeIzq());
 		Auxiliar.addChildIzq(Nodo);
@@ -109,7 +110,8 @@ public class Arbol<T> {
 	}
 	
 	
-	public Nodo<String> RotarHijoIzq(Nodo<String> Nodo){
+	public Nodo<String> RotarHijoIzq(Nodo<String> Nodo)
+	{
 		Nodo<String> Auxiliar = Nodo.getNodeIzq();
 		Nodo.addChildIzq(Auxiliar.getNodeDer());
 		Auxiliar.addChildDer(Nodo);
@@ -119,29 +121,34 @@ public class Arbol<T> {
 	}
 	
 	
-	public Nodo<String> RotarDobleHijoDer(Nodo<String> Nodo){
+	public Nodo<String> RotarDobleHijoDer(Nodo<String> Nodo)
+	{
 		Nodo.addChildDer(RotarHijoIzq(Nodo.getNodeDer()));
 		return RotarHijoDer(Nodo);
 	}
 	
 	
-	public Nodo<String> RotarDobleHijoIzq(Nodo<String> Nodo){
+	public Nodo<String> RotarDobleHijoIzq(Nodo<String> Nodo)
+	{
 		Nodo.addChildIzq(RotarHijoDer(Nodo.getNodeIzq()));
 		return RotarHijoIzq(Nodo);
 	}
 	
 	
-	public int Max(int IzqPeso, int DerPeso){
+	public int Max(int IzqPeso, int DerPeso)
+	{
 		return IzqPeso > DerPeso ? IzqPeso:DerPeso;
 	}
 	
 	
-	public void Recorrer(){
+	public void Recorrer()
+	{
 		EnOrden(Raiz);
 	}
 	
 	
-	public void EnOrden(Nodo<String> Nodo){
+	public void EnOrden(Nodo<String> Nodo)
+	{
 		if(Nodo != null){
 			EnOrden(Nodo.getNodeIzq());
 			System.out.println(Nodo.getValor());

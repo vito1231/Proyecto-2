@@ -1,11 +1,12 @@
 package Arboles;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 public class Nodo<T> {
 	private Nodo<T> HijoIzq;
 	private Nodo<T> HijoDer;
-	private ArrayList<NodoImagen<T>> Imagen;
+	private ArrayList<NodoImagen<Image>> Imagen;
 	private T Valor;
 	private int Peso;
 	
@@ -14,6 +15,7 @@ public class Nodo<T> {
 		HijoIzq = null;
 		HijoDer = null;
 		Valor = null;
+		Imagen = new ArrayList<NodoImagen<Image>>();
 		Peso = 0;
 	}
 	
@@ -22,6 +24,7 @@ public class Nodo<T> {
 	{
 		HijoIzq = null;
 		HijoDer = null;
+		Imagen = new ArrayList<NodoImagen<Image>>();
 		Valor = pValue;
 		Peso = 0;
 	}
@@ -75,19 +78,19 @@ public class Nodo<T> {
 	}
 	
 	
-	public ArrayList<NodoImagen<T>> getImagen() 
+	public ArrayList<NodoImagen<Image>> getImagen() 
 	{
 		return Imagen;
 	}
 
 
-	public void setImagen(ArrayList<NodoImagen<T>> imagen) 
+	public void setImagen(ArrayList<NodoImagen<Image>> imagen) 
 	{
 		Imagen = imagen;
 	}
 	
 	
-	public void addImagen(NodoImagen<T> imagen) 
+	public void addImagen(NodoImagen<Image> imagen) 
 	{
 		Imagen.add(imagen);
 	}

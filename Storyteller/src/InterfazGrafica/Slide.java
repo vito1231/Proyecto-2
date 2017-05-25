@@ -11,10 +11,10 @@ import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+
 import javax.swing.JFrame;
 
-
-public class Slide extends JFrame{
+public class Slide extends JFrame {
 	/**
 	 * 
 	 */
@@ -37,7 +37,7 @@ public class Slide extends JFrame{
 	
 	public void Run ()
 	{
-		KeyListener();
+		KeyListenerControl();
 		this.getContentPane().setBackground(Color.BLACK);
 	    try
 	    {
@@ -108,27 +108,26 @@ public class Slide extends JFrame{
 	}
 	
 	
-	public void KeyListener()
+	public void KeyListenerControl()
 	{
 		KeyListener Listener = new KeyListener()
 		{
 			@Override
-			public void keyPressed(KeyEvent e) 
-			{
+			public void keyPressed(KeyEvent arg0) {
 				// TODO Auto-generated method stub
 				restoreScreen();
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e)
-			{
+			public void keyReleased(KeyEvent arg0) {
 				// TODO Auto-generated method stub
+				
 			}
 
 			@Override
-			public void keyTyped(KeyEvent e) 
-			{
+			public void keyTyped(KeyEvent arg0) {
 				// TODO Auto-generated method stub
+				
 			}
 			
      };
