@@ -45,5 +45,16 @@
 	<classpathentry kind="lib" path="C:/Users/vicnb/Documents/TEC/3 SEM/Estructuras de Datos/Proyectos/apache-maven-3.5.0/lib/wagon-file-2.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/vicnb/Documents/TEC/3 SEM/Estructuras de Datos/Proyectos/apache-maven-3.5.0/lib/wagon-http-2.12-shaded.jar"/>
 	<classpathentry kind="lib" path="C:/Users/vicnb/Documents/TEC/3 SEM/Estructuras de Datos/Proyectos/apache-maven-3.5.0/lib/wagon-provider-api-2.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/fluent-hc-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/httpclient-cache-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/httpclient-win-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/httpcomponents-client-4.5.3/lib/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adrian Mora/Desktop/java-json.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

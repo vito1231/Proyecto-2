@@ -136,7 +136,7 @@ public class Arbol<T> {
 	}
 	
 	
-	public void Recorrer(){
+	public void Imprimir(){
 		EnOrden(Raiz);
 	}
 	
