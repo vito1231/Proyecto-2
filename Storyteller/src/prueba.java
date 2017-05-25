@@ -2,6 +2,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -13,7 +15,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.json.JSONException;
+import org.json.simple.parser.ParseException;
+
+import Logica.JSON_ARRAY;
+
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -51,9 +62,13 @@ public class prueba extends JFrame {
 		menuBar.add(mnFile);
 		
 		JMenuItem mntmNewAlbum = new JMenuItem("New Album");
-		mntmNewAlbum.addMouseListener(new MouseAdapter() {
+		mntmNewAlbum.addActionListener(new ActionListener() {
+			
+
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) {
+				cargar();
+				
 			}
 		});
 		mnFile.add(mntmNewAlbum);
@@ -72,24 +87,41 @@ public class prueba extends JFrame {
 		contentPane.add(lblStoryteller);
 		
 		JList list = new JList();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 49, SpringLayout.SOUTH, lblStoryteller);
+		sl_contentPane.putConstraint(SpringLayout.WEST, list, 55, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -68, SpringLayout.SOUTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, list, 0, SpringLayout.EAST, lblStoryteller);
 		list.setFont(new Font("Arial", Font.PLAIN, 40));
-		sl_contentPane.putConstraint(SpringLayout.NORTH, list, 75, SpringLayout.SOUTH, lblStoryteller);
-		sl_contentPane.putConstraint(SpringLayout.WEST, list, 96, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, list, -104, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, list, 340, SpringLayout.WEST, contentPane);
 		DefaultListModel model = new DefaultListModel();
 		
 		
 		
 		model.addElement("Prueba");
 		model.addElement("Prueba 2");
+		
+		
+		
+		
+		
+		
 		list.setModel(model);
 		
 		contentPane.add(list);
 		
-		
-		
-		
-		
+	}
+	public void cargar(){
+	JFileChooser fileChooser = new JFileChooser();
+	FileNameExtensionFilter filter = new FileNameExtensionFilter(".json", "json");
+	fileChooser.setFileFilter(filter);
+		if (fileChooser.showOpenDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
+	  @SuppressWarnings("unused")
+	File file = fileChooser.getSelectedFile();
+	  try {
+		JSON_ARRAY filito=new JSON_ARRAY(file.getAbsolutePath());
+	} catch (JSONException | IOException | ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	  }
 	}
 }

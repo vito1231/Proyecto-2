@@ -11,12 +11,12 @@ import org.json.simple.parser.ParseException;
 public class JSON_ARRAY {
 	
 
-	public JSON_ARRAY() throws JSONException, IOException, ParseException {
+	public JSON_ARRAY(String file) throws JSONException, IOException, ParseException {
 		super();
 		
 		JSONParser parser = new JSONParser();
 		
-			 Object b = parser.parse(new FileReader("prueba4.json"));
+			 Object b = parser.parse(new FileReader(file));
 			 JSONObject c = (JSONObject) b;
 			 @SuppressWarnings("unchecked")
 			ArrayList<String> a= (ArrayList<String>) c.get("photos");
@@ -30,7 +30,7 @@ public static void main(String[] args) throws JSONException, IOException, ParseE
 	
 	
 	@SuppressWarnings("unused")
-	JSON_ARRAY he= new JSON_ARRAY();
+	JSON_ARRAY he= new JSON_ARRAY("prueba.json");
 }
 
 
