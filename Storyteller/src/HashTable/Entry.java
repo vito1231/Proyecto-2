@@ -1,6 +1,8 @@
 package HashTable;
 
-public class Entry {
+import java.io.Serializable;
+
+public class Entry implements Serializable{
     private String key;
     private Byte[] value;
 

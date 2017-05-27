@@ -1,12 +1,13 @@
 package HashTable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Hashtable;
 import Arboles.*;
 
-public class ParOrdenado {
+public class ParOrdenado implements Serializable {
 
     private ArrayList<Entry> table;
     
