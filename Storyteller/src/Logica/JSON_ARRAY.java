@@ -26,12 +26,6 @@ public class JSON_ARRAY {
 	}
 		
 	
-public static void main(String[] args) throws JSONException, IOException, ParseException {
-	
-	
-	@SuppressWarnings("unused")
-	JSON_ARRAY he= new JSON_ARRAY("prueba.json");
-}
 
 
 
