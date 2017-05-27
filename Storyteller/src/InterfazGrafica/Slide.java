@@ -2,51 +2,47 @@ package InterfazGrafica;
 
 import java.awt.Color;
 import java.awt.DisplayMode;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 import org.json.JSONException;
-import org.json.simple.parser.ParseException;
 
-import Logica.JSON_ARRAY;
+import Arboles.Nodo;
+import Logica.Controlador;
 
 public class Slide extends javax.swing.JFrame{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1362174125576713002L;
-	private Image Imagen;
 	private Screen Pantalla;
 	private DisplayMode DM;
-	private String Titulo;
-	private String Descripcion;
-	private File Archivo;
-	private ArrayList<String> h;
+	private Image Imagen;
+	private Controlador p;
 	
-	public Slide(File pArchivo) throws IOException, JSONException{
+	public Slide(Controlador controlador) throws IOException, JSONException{
 	    DM = new DisplayMode(1280,1500,32,DisplayMode.REFRESH_RATE_UNKNOWN);
 	    Pantalla = new Screen();
-	    Archivo = pArchivo;
+	    Imagen = null;
+	    p= controlador;
+
 	}
 	  
 	
-	public void run () throws IOException, JSONException{
+	public void Run () throws IOException, JSONException{
 		CrearKeyListener();
+		CrearKeyListenerl();
 		this.getContentPane().setBackground(Color.BLACK);
 	    setForeground(Color.WHITE);
 	    try{
-	    	System.out.println(this.getHeight());
 	    	Pantalla.setFullScreen(DM, this);
 	    }
 	    catch(Exception ex)
@@ -54,21 +50,23 @@ public class Slide extends javax.swing.JFrame{
 	    }
 	    
 	 }
+	 public void paint (Graphics g)
+	    {
+		 super.paint(g);
+		 if(Imagen != null){
+			
+	        g.setColor (Color.blue);
+	        g.drawString("Primer linea",10,200);
+	        g.drawImage(Imagen, 700, 200, 600, 600, null);
+	        g.drawString("Segunda linea",10,300);
+		 }
+	    }
 	  
-	  
-
 	
-	public void CargarImagen(ArrayList<String> h, String pDescripcion, String pTitulo) throws IOException, InterruptedException{
-		for(String Url : h){
-				//Analisis.Analizar(Url);
-				System.out.println(Url);
-				URL url = new URL(Url);
-				Imagen = ImageIO.read(url);
-				Descripcion = pDescripcion;
-				Titulo = pTitulo;
-				this.getGraphics().drawImage(Imagen,700	, 200, 600, 600, null); 
-				Thread.sleep(150);
-		}
+	public void CargarImagen(Image pImagen, String pDescripcion, String pTitulo) throws IOException, InterruptedException{
+		Imagen = pImagen;
+		Thread.sleep(100);
+		repaint();
 	}
 	
 	public void CrearKeyListener(){
@@ -76,14 +74,12 @@ public class Slide extends javax.swing.JFrame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("dsa");
 				Pantalla.restoreScreen();
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 
 			@Override
@@ -95,8 +91,48 @@ public class Slide extends javax.swing.JFrame{
 		addKeyListener(listener);
 		setFocusable(true);
 	}
-
-
 	
+	public void CrearKeyListenerl(){
+		MouseListener listener = new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				try {
+					p.MostrarVentana();
+				} catch (IOException | JSONException | InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		};
+		addMouseListener(listener);
+		setFocusable(true);
+	}
 
 }

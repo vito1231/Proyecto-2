@@ -14,6 +14,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.json.JSONException;
 import org.json.simple.parser.ParseException;
 
+import Arboles.Nodo;
+import Logica.Controlador;
 import Logica.JSON_ARRAY;
 
 public class Interfaz extends JFrame{
@@ -22,19 +24,22 @@ public class Interfaz extends JFrame{
 	 */
 	private static final long serialVersionUID = 5434314643296392986L;
 	private JButton BotonArbol;
-	private Slide Archivo;
-	private JSON_ARRAY NU;
+	private JSON_ARRAY ListaUrls;
+	private Controlador Control;
+
 	
-	public Interfaz() throws JSONException, IOException, ParseException, InterruptedException{
+	public Interfaz(Controlador pControl) throws JSONException, IOException, ParseException, InterruptedException{
+		Control = pControl;
 		setSize(1900, 1050);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		Arbol();
 	}
-	
-	
+
 	public void Arbol(){
+		
+		
 		BotonArbol = new JButton("Nuevo");
 		BotonArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +55,7 @@ public class Interfaz extends JFrame{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+            	return;
             }
         });
 
@@ -58,6 +64,11 @@ public class Interfaz extends JFrame{
 		this.add(BotonArbol); 
 	}
 	
+	public void Terminar() throws IOException, JSONException, InterruptedException {
+		// TODO Auto-generated method stub
+
+	}
+
 	private void BotonArbolActionPerformed(java.awt.event.ActionEvent evt) throws IOException, JSONException, ParseException, InterruptedException {                                         
         // TODO add your handling code here:
 		JFileChooser fileChooser = new JFileChooser();
@@ -65,11 +76,9 @@ public class Interfaz extends JFrame{
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showOpenDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
 		  File file = fileChooser.getSelectedFile();
-		  Archivo = new Slide(file);
-		  NU = new JSON_ARRAY(file.getAbsolutePath(),Archivo);
-		  Archivo.run();
-		  Archivo.setVisible(true);
-		  Archivo.CargarImagen(NU.ObtenerURLs(), "pDescripcion"," pTitulo");
+		  ListaUrls = new JSON_ARRAY(file.getAbsolutePath());
+		  Control.AnalizarImagenes(ListaUrls.ObtenerURLs());
+		  Control.MostrarVentana();
 		}
     }                         
 	
@@ -91,16 +100,5 @@ public class Interfaz extends JFrame{
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-					new Interfaz().setVisible(true);
-				} catch (JSONException | IOException | ParseException | InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-            }
-        });
     }
 }

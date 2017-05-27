@@ -1,11 +1,20 @@
 package Arboles;
 
+import java.awt.Image;
+import java.io.IOException;
+
+import org.json.JSONException;
+
+import Logica.Controlador;
+
 public class Arbol<T> {
-	private Nodo Raiz;
+	private Nodo<String> Raiz;
+	private Controlador Control;
 	
-	public Arbol()
+	public Arbol(Controlador pControl) throws IOException, JSONException
 	{
 		Raiz = null;
+		Control = pControl;
 	}
 	
 	
@@ -22,40 +31,43 @@ public class Arbol<T> {
 	}
 	
 	
-	public void addNodeValue(T pValue)
+	public void addNodeValue(T pValue, NodoImagen<Image> Imagen)
 	{
 		Nodo<String> Nuevo = new Nodo<String>((String) pValue);
 		if(!Vacio())
 		{
-			Insertar(Raiz, Nuevo);
+			Insertar(Raiz, Nuevo, Imagen);
 		}
 		else
 		{
 			Raiz = Nuevo;
+			Raiz.addImagen(Imagen);
 		}
 	}
 	
 	
-	public void addNode(Nodo<String> pNodo)
+	public void addNode(Nodo<String> pNodo, NodoImagen<Image> Imagen)
 	{
 		if(!Vacio())
 		{
-			Insertar(Raiz, pNodo);
+			Insertar(Raiz, pNodo, Imagen);
 		}
 		else
 		{
 			Raiz = pNodo;
+			Raiz.addImagen(Imagen);
 		}
 	}
 	
 	
-	public Nodo<String> Insertar(Nodo<String> pNodo, Nodo<String> pNuevo){
+	public Nodo<String> Insertar(Nodo<String> pNodo, Nodo<String> pNuevo, NodoImagen<Image> Imagen){
 		if(pNodo != null){
 			if(pNodo.getValor().compareToIgnoreCase(pNuevo.getValor()) < 0)
 			{
-				Nodo<String> Aux = Insertar(pNodo.getNodeDer(), pNuevo);
+				Nodo<String> Aux = Insertar(pNodo.getNodeDer(), pNuevo, Imagen);
 				if(pNodo.getNodeDer() == null){
 					pNodo.addChildDer(Aux);
+					Aux.addImagen(Imagen);
 				}
 				if(Peso(pNodo.getNodeDer()) - Peso(pNodo.getNodeIzq()) == 2){
 					if(pNodo.getValor().compareToIgnoreCase(pNuevo.getValor()) < 0){
@@ -69,8 +81,9 @@ public class Arbol<T> {
 			}
 			else if(pNodo.getValor().compareToIgnoreCase(pNuevo.getValor()) > 0)
 			{
-				Nodo<String> Aux = Insertar(pNodo.getNodeIzq(), pNuevo);
+				Nodo<String> Aux = Insertar(pNodo.getNodeIzq(), pNuevo, Imagen);
 				if(pNodo.getNodeIzq() == null){
+					Aux.addImagen(Imagen);
 					pNodo.addChildIzq(Aux);
 				}
 				if(Peso(pNodo.getNodeIzq()) - Peso(pNodo.getNodeDer()) == 2){
@@ -81,7 +94,9 @@ public class Arbol<T> {
 						pNodo = RotarDobleHijoIzq(pNodo);
 					}
 				}
-
+			}
+			else{
+				pNodo.addImagen(Imagen);
 			}
 		}
 		return pNuevo;
@@ -141,21 +156,18 @@ public class Arbol<T> {
 	}
 	
 	
-	public void Recorrer()
+	public void Recorrer() throws IOException, InterruptedException, JSONException
 	{
 		EnOrden(Raiz);
 	}
 	
 	
-	public void EnOrden(Nodo<String> Nodo)
+	public void EnOrden(Nodo<String> Nodo) throws IOException, InterruptedException
 	{
 		if(Nodo != null){
 			EnOrden(Nodo.getNodeIzq());
-			System.out.println(Nodo.getValor());
+			Control.DesplegarImagenes(Nodo);
 			EnOrden(Nodo.getNodeDer());
 		}
 	}
-	
-	
-
 }
