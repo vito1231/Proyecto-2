@@ -4,12 +4,17 @@ public class HashEntry {
     private String key;
     private Byte[] value;
 
+
     public HashEntry(String key, Byte[] value) {
           this.key = key;
           this.value = value;
     }     
+    
+    
 
-    public String getKey() {
+
+
+	public String getKey() {
           return key;
     }
 

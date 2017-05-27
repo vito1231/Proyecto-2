@@ -4,41 +4,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Hashtable;
-
 import Arboles.*;
 
 public class HashTable {
-	private final int TABLE_SIZE = 13;
-	 
-    HashEntry[] table;
 
-    public HashTable() {
-          table = new HashEntry[TABLE_SIZE];
-          for (int i = 0; i < TABLE_SIZE; i++)
-                table[i] = null;
-    }
-
-    public Byte[] get(String key) {
-          int hash = (Math.abs(key.hashCode()) % TABLE_SIZE);
-          while (table[hash] != null && table[hash].getKey() != key)
-                hash = (hash + 1) % TABLE_SIZE;
-          if (table[hash] == null)
-                return null;
-          else
-                return table[hash].getValue();
-    }
-
-    public void put(String key, Byte[] value) {
-          int hash = (Math.abs(key.hashCode()) % TABLE_SIZE);
-          while (table[hash] != null && table[hash].getKey() != key)
-                hash = (hash + 1) % TABLE_SIZE;
-          table[hash] = new HashEntry(key, value);
-    }
-
+    private ArrayList<HashEntry> table;
     
-@Override
-	public String toString() {
-		return "HashTable [table=" + Arrays.toString(table) + "]";
-	}
+    public HashTable() {
+          table=new ArrayList<HashEntry>();
+    }
+    
+    public void add(String nombre, Byte[] arbol){
+    	HashEntry album = new HashEntry(nombre, arbol);
+    	table.add(album);
+    	quicksort();
+    }
+    
+    public void quicksort(){
+    	
+    }
+
+    public HashEntry busqueda_binaria(String nombre){
+		return null;
+    	
+    }
+    
+
 
 }
