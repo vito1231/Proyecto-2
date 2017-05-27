@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -41,6 +42,7 @@ public class InterfazDef extends JFrame {
 	private JSON_ARRAY NU;
 	private JPanel contentPane;
 	private ParOrdenado table;
+	private Controlador Control;
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +50,7 @@ public class InterfazDef extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InterfazDef frame = new InterfazDef();
+					InterfazDef frame = new InterfazDef(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,11 +62,12 @@ public class InterfazDef extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfazDef() {
+	public InterfazDef(Controlador pControl) {
+		Control = pControl;
 		DefaultListModel model = new DefaultListModel();
-		Controlador control= new Controlador();
+		
 		try{
-			table= control.cargar();
+			table= Control.cargar();
 			ArrayList<Entry> tabla = table.getTable();
 			for(int i=0; i<tabla.size(); i++){
 				model.addElement(tabla.get(i).getKey());
@@ -73,7 +76,7 @@ public class InterfazDef extends JFrame {
 		}
 		catch(Exception e){
 			table= new ParOrdenado();
-			control.salvar(table);
+			Control.salvar(table);
 		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +129,12 @@ public class InterfazDef extends JFrame {
 				Entry album= table.busqueda_binaria(valor);
 				Serializacion objeto= new Serializacion ();
 				Arbol arbol =(Arbol) objeto.deserializar(album.getValue());
-				arbol.Imprimir();
+				try {
+					arbol.Recorrer();
+				} catch (IOException | InterruptedException | JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				
 				
@@ -142,12 +150,9 @@ public class InterfazDef extends JFrame {
 		fileChooser.setFileFilter(filter);
 		if (fileChooser.showOpenDialog(fileChooser) == JFileChooser.APPROVE_OPTION) {
 		  File file = fileChooser.getSelectedFile();
-		  Archivo = new Slide(file);
-		  NU = new JSON_ARRAY(file.getAbsolutePath(),Archivo);
-		  Archivo.run();
-		  Archivo.setVisible(true);
-		  Archivo.CargarImagen(NU.ObtenerURLs(), "pDescripcion"," pTitulo");
-
+		  JSON_ARRAY ListaUrls = new JSON_ARRAY(file.getAbsolutePath());
+		  Control.AnalizarImagenes(ListaUrls.ObtenerURLs());
+		  Control.MostrarVentana();
 		}
 		
 	}

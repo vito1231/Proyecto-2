@@ -3,7 +3,28 @@ package Arboles;
 public class NodoImagen<T> {
 	private T Valor;
 	private Estado EstadoImagen;
+	private String Descripcion;
 	
+	public Estado getEstadoImagen() {
+		return EstadoImagen;
+	}
+
+
+	public void setEstadoImagen(Estado estadoImagen) {
+		EstadoImagen = estadoImagen;
+	}
+
+
+	public String getDescripcion() {
+		return Descripcion;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		Descripcion = descripcion;
+	}
+
+
 	public NodoImagen()
 	{
 		Valor = null;

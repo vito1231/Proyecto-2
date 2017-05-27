@@ -17,7 +17,7 @@ public class JSON_ARRAY {
 	private Analizador Analisis;
 	private Object Obj;
 	
-	public JSON_ARRAY(String File, Slide slide) throws JSONException, IOException, ParseException, InterruptedException {
+	public JSON_ARRAY(String File) throws JSONException, IOException, ParseException, InterruptedException {
 		super();
 		Analisis = new Analizador();
 		JSONParser Parser = new JSONParser();
@@ -27,12 +27,7 @@ public class JSON_ARRAY {
 		JSONObject JObj = (JSONObject) Obj;
 		@SuppressWarnings("unchecked")
 		ArrayList<String> Array = (ArrayList<String>) JObj.get("photos");
-		//for(String Url : Array){
-		//	Analisis.Analizar(Url);
-		//	SlideVentana.CargarImagen(Url, Analisis.Descripcion(), Analisis.Tags().get(0));
-		//	Thread.sleep(50);
-		//	System.out.println(Url);
-		//}
+	
 		return Array;
 	}
 	

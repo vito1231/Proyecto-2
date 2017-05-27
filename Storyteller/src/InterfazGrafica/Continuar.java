@@ -24,7 +24,7 @@ public class Continuar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Continuar frame = new Continuar();
+					Continuar frame = new Continuar(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class Continuar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Continuar() {
+	public Continuar(InterfazDef interfaz) {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 688, 280);
 			contentPane = new JPanel();

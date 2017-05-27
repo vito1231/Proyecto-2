@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SpringLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -26,7 +28,7 @@ public class GuardarAlbum extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GuardarAlbum frame = new GuardarAlbum();
+					GuardarAlbum frame = new GuardarAlbum(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,8 +40,8 @@ public class GuardarAlbum extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GuardarAlbum(/*InterfazDef interfaz*/) {
-		Continuar conti=new Continuar();
+	public GuardarAlbum(InterfazDef interfaz) {
+		Continuar conti=new Continuar(interfaz);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 688, 280);
 		contentPane = new JPanel();
@@ -78,9 +80,14 @@ public class GuardarAlbum extends JFrame {
 		btnSi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 String key=textField.getText();
-				//interfaz.getTable().add(key, );
-				 setVisible(false);
-				 conti.setVisible(true);
+				 if(!interfaz.getTable().busqueda_binaria_boolean(key)){
+					//interfaz.getTable().add(key, );
+					 setVisible(false);
+					 conti.setVisible(true);
+				 }
+				 else{
+					 JOptionPane.showMessageDialog(rootPane, "Ya existe ese nombre","ERROR",JOptionPane.ERROR_MESSAGE); 
+				 }
 				 
 			}
 		});
