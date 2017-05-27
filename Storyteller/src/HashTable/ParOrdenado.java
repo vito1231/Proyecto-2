@@ -9,13 +9,17 @@ import Arboles.*;
 
 public class ParOrdenado implements Serializable {
 
-    private ArrayList<Entry> table;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Entry> table;
     
     public ParOrdenado() {
           table=new ArrayList<Entry>();
     }
     
-    public void add(String nombre, Byte[] arbol){
+    public void add(String nombre, byte[] arbol){
     	Entry album = new Entry(nombre, arbol);
     	table.add(album);
     	QuickSort(0,table.size()-1);
@@ -52,8 +56,25 @@ public class ParOrdenado implements Serializable {
 	}
 
 
+	public Entry busqueda_binaria(String nombre){
+    	int inicio = 0;
+    	 int fin = table.size() - 1;
+    	 int pos;
+    	 while (inicio <= fin) {
+    	     pos = (inicio+fin) / 2;
+    	     if ( table.get(pos).getKey() == nombre )
+    	       return table.get(pos);
+    	     else if ( table.get(pos).getKey().compareTo(nombre) < 0 ) {
+    	  inicio = pos+1;
+    	     } else {
+    	  fin = pos-1;
+    	     }
+    	 }
+    	 return null;
+    	    }
+	
 
-    public Boolean busqueda_binaria(String nombre){
+	public Boolean busqueda_binaria_boolean(String nombre){
     	int inicio = 0;
     	 int fin = table.size() - 1;
     	 int pos;
@@ -70,7 +91,13 @@ public class ParOrdenado implements Serializable {
     	 return false;
     	    }
     	
-    	
+	  public ArrayList<Entry> getTable() {
+			return table;
+		}
+
+		public void setTable(ArrayList<Entry> table) {
+			this.table = table;
+		}
     }
     
 

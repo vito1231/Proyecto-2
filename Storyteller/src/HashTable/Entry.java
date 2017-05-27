@@ -4,26 +4,19 @@ import java.io.Serializable;
 
 public class Entry implements Serializable{
     private String key;
-    private Byte[] value;
+    private byte[] value;
 
-
-
-
-
-	public Entry(String nombre, Byte[] arbol) {
+	public Entry(String nombre, byte[] arbol) {
 		key=nombre;
 		value=arbol;
 	}
-
-
-
 
 
 	public String getKey() {
           return key;
     }
 
-    public Byte[] getValue() {
+    public byte[] getValue() {
           return value;
     }
 

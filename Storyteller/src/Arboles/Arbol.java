@@ -1,6 +1,8 @@
 package Arboles;
 
-public class Arbol<T> {
+import java.io.Serializable;
+
+public class Arbol<T> implements Serializable{
 	private Nodo<String> Raiz;
 	
 	public Arbol()
