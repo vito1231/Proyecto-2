@@ -6,16 +6,16 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import Arboles.*;
 
-public class HashTable {
+public class ParOrdenado {
 
-    private ArrayList<HashEntry> table;
+    private ArrayList<Entry> table;
     
-    public HashTable() {
-          table=new ArrayList<HashEntry>();
+    public ParOrdenado() {
+          table=new ArrayList<Entry>();
     }
     
     public void add(String nombre, Byte[] arbol){
-    	HashEntry album = new HashEntry(nombre, arbol);
+    	Entry album = new Entry(nombre, arbol);
     	table.add(album);
     	quicksort();
     }
@@ -24,7 +24,7 @@ public class HashTable {
     	
     }
 
-    public HashEntry busqueda_binaria(String nombre){
+    public Entry busqueda_binaria(String nombre){
 		return null;
     	
     }

@@ -1,16 +1,19 @@
 package HashTable;
 
-public class HashEntry {
+public class Entry {
     private String key;
     private Byte[] value;
 
 
-    public HashEntry(String key, Byte[] value) {
-          this.key = key;
-          this.value = value;
-    }     
-    
-    
+
+
+
+	public Entry(String nombre, Byte[] arbol) {
+		key=nombre;
+		value=arbol;
+	}
+
+
 
 
 
